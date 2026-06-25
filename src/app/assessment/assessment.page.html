@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" color="secondary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Self-Assessment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding assessment-bg">
+
+  <div *ngIf="!isFinished" class="question-container">
+    <div class="progress-bar">
+      <div class="progress" [style.width]="((currentStep + 1) / questions.length * 100) + '%'"></div>
+    </div>
+
+    <p class="step-count">Pertanyaan {{ currentStep + 1 }} dari {{ questions.length }}</p>
+
+    <h2 class="question-text">{{ questions[currentStep].text }}</h2>
+
+    <div class="options">
+      <ion-button expand="block" fill="outline" class="option-btn" (click)="answer(0)">Tidak Pernah</ion-button>
+      <ion-button expand="block" fill="outline" class="option-btn" (click)="answer(1)">Jarang</ion-button>
+      <ion-button expand="block" fill="outline" class="option-btn" (click)="answer(2)">Sering</ion-button>
+      <ion-button expand="block" fill="outline" class="option-btn" (click)="answer(3)">Sangat Sering</ion-button>
+    </div>
+  </div>
+
+  <div *ngIf="isFinished" class="result-container animate__animated animate__fadeIn">
+    <div class="result-card">
+      <div class="result-header">
+        <ion-icon name="analytics-outline"></ion-icon>
+        <h3>Hasil Analisis</h3>
+      </div>
+      
+      <div class="category-badge" [class]="result.category.toLowerCase()">
+        {{ result.category }}
+      </div>
+
+      <p class="score-text">Skor Anda: <strong>{{ result.score }}</strong></p>
+      
+      <div class="recommendation-box">
+        <h4>Rekomendasi Kami:</h4>
+        <p>{{ result.recommendation }}</p>
+      </div>
+
+      <ion-button expand="block" class="home-btn" (click)="goHome()">
+        KEMBALI KE BERANDA
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

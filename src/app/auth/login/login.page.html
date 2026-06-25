@@ -1,20 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="login-bg">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="login-wrapper">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- TOP SECTION -->
+    <div class="top-section">
+      <img src="assets/icon/ibu.png" alt="logo" class="logo">
+
+      <h1>BundaTenang</h1>
+      <p>Temani perjalanan kehamilanmu dengan nyaman 💕</p>
+    </div>
+
+    <!-- FORM SECTION -->
+    <div class="form-section">
+
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+
+      <!-- Forgot -->
+      <div class="forgot">
+        <span>Lupa password?</span>
+      </div>
+
+      <!-- Button -->
+      <ion-button expand="block" class="login-btn" (click)="onLogin()">
+        MASUK
+      </ion-button>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span>atau</span>
+      </div>
+
+      <!-- Register -->
+      <p class="register-text">
+        Belum punya akun? <span (click)="goToRegister()">Daftar sekarang</span>
+      </p>
+
+    </div>
+
   </div>
+
 </ion-content>

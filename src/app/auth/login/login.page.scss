@@ -1,27 +1,120 @@
-#container {
+.login-bg {
+  --background: linear-gradient(180deg, #ffe4ec 0%, #ffffff 100%);
+}
+
+/* Wrapper */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 20px;
+}
+
+/* TOP */
+.top-section {
   text-align: center;
+  margin-top: 40px;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  .logo {
+    width: 120px;
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e91e63;
+  }
+
+  p {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+/* FORM */
+.form-section {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+/* INPUT */
+.input-item {
+  --background: #f9f9f9;
+  --color: #333; /* Explicit text color */
+  --placeholder-color: #999; /* Explicit placeholder color */
+  --placeholder-opacity: 1;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  padding-left: 10px;
 }
 
-#container a {
-  text-decoration: none;
-}  
+ion-icon {
+  color: #e91e63;
+}
+
+/* FORGOT */
+.forgot {
+  text-align: right;
+  font-size: 13px;
+  color: #e91e63;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* BUTTON */
+.login-btn {
+  --background: #e91e63;
+  --border-radius: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+  height: 50px; /* Make it a bit taller */
+}
+
+/* GOOGLE BUTTON */
+.google-btn {
+  --border-radius: 15px;
+  margin-top: 10px;
+}
+
+/* DIVIDER */
+.divider {
+  text-align: center;
+  margin: 15px 0;
+  position: relative;
+
+  span {
+    background: #fff;
+    padding: 0 10px;
+    color: #999;
+    font-size: 12px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #eee;
+    top: 50%;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+/* REGISTER */
+.register-text {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+  color: #666; /* Added explicit color for "Belum punya akun?" */
+
+  span {
+    color: #e91e63;
+    font-weight: bold;
+  }
+}

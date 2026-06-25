@@ -1,25 +1,16 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginPage } from './login.page';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
   {
-    path: 'login',
-    loadChildren: () => import('./login.module').then(m => m.LoginPageModule)
-  },
-  {
-    path: 'register',
-    loadChildren: () => import('../register/register.module').then(m => m.RegisterPageModule)
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('../../home/home.module').then(m => m.HomePageModule)
+    path: '',
+    component: LoginPage
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class LoginPageRoutingModule {} // ✅ INI YANG KEMARIN HILANG

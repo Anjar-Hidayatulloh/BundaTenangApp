@@ -1,13 +1,64 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="register-bg">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="register-wrapper">
+
+    <!-- TOP SECTION -->
+    <div class="top-section">
+      <img src="assets/icon/ibu.png" alt="logo" class="logo">
+      <h1>Daftar Akun</h1>
+      <p>Lengkapi data untuk pengalaman yang dipersonalisasi ✨</p>
+    </div>
+
+    <!-- FORM SECTION -->
+    <div class="form-section">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-input type="text" placeholder="Nama Lengkap" formControlName="displayName"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-item lines="none" class="input-item">
+              <ion-icon name="calendar-outline" slot="start"></ion-icon>
+              <ion-input type="number" placeholder="Usia" formControlName="age"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item lines="none" class="input-item">
+              <ion-icon name="heart-outline" slot="start"></ion-icon>
+              <ion-input type="number" placeholder="Minggu Ke" formControlName="pregnancyAge"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="document-text-outline" slot="start"></ion-icon>
+          <ion-input type="text" placeholder="Riwayat Kehamilan (Contoh: Anak ke-1)" formControlName="pregnancyHistory"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" class="register-btn" type="submit" [disabled]="!registerForm.valid">
+          DAFTAR
+        </ion-button>
+      </form>
+
+      <p class="login-text">
+        Sudah punya akun? <span (click)="goToLogin()">Masuk sekarang</span>
+      </p>
+
+    </div>
+
+  </div>
+
 </ion-content>

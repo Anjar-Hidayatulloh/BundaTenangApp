@@ -1,20 +1,92 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="home-bg">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Header Section -->
+  <div class="header-section">
+    <div class="user-info">
+      <p>Selamat Datang,</p>
+      <h2>Bunda {{ user?.displayName || '...' }} 👋</h2>
+      <!-- Tampilkan mood terakhir jika ada -->
+      <p class="last-mood" *ngIf="recentMoods.length > 0">
+        Mood terakhir: <strong>{{ getMoodLabel(recentMoods[recentMoods.length - 1].mood) }}</strong>
+      </p>
+    </div>
+    <div class="header-actions">
+      <ion-button fill="clear" (click)="logout()" class="logout-btn">
+        <ion-icon name="log-out-outline" slot="icon-only" color="secondary"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" (click)="confirmDeleteAccount()" class="delete-btn">
+        <ion-icon name="trash-outline" slot="icon-only" color="danger"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="main-container">
+
+    <!-- Pregnancy Info Card -->
+    <div class="info-card">
+      <div class="card-content">
+        <div class="info-item">
+          <span class="label">Usia Kehamilan</span>
+          <span class="value">{{ user?.pregnancyAge || 0 }} Minggu</span>
+        </div>
+        <div class="divider-v"></div>
+        <div class="info-item">
+          <span class="label">Riwayat</span>
+          <span class="value">{{ user?.pregnancyHistory || '-' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mood Logging -->
+    <div class="section-header">
+      <h3>Bagaimana perasaan Bunda hari ini?</h3>
+    </div>
+    
+    <div class="mood-selector">
+      <div class="mood-item" (click)="logMood('happy')" tappable>
+        <div class="emoji-wrapper"><span class="emoji">😊</span></div>
+        <span>Senang</span>
+      </div>
+      <div class="mood-item" (click)="logMood('neutral')" tappable>
+        <div class="emoji-wrapper"><span class="emoji">😐</span></div>
+        <span>Biasa</span>
+      </div>
+      <div class="mood-item" (click)="logMood('anxious')" tappable>
+        <div class="emoji-wrapper"><span class="emoji">😰</span></div>
+        <span>Cemas</span>
+      </div>
+      <div class="mood-item" (click)="logMood('sad')" tappable>
+        <div class="emoji-wrapper"><span class="emoji">😢</span></div>
+        <span>Sedih</span>
+      </div>
+      <div class="mood-item" (click)="logMood('angry')" tappable>
+        <div class="emoji-wrapper"><span class="emoji">😡</span></div>
+        <span>Marah</span>
+      </div>
+    </div>
+
+    <!-- Mood Chart -->
+    <div class="chart-container shadow-card">
+      <div class="chart-header">
+        <h4>Tren Mood Bunda</h4>
+        <span class="time-label">7 Hari Terakhir</span>
+      </div>
+      <canvas #moodChart></canvas>
+    </div>
+
+    <!-- Assessment CTA -->
+    <div class="assessment-cta shadow-card" (click)="goToAssessment()">
+      <div class="cta-text">
+        <h4>Self-Assessment</h4>
+        <p>Cek kesehatan mental Bunda secara rutin yuk!</p>
+        
+        <!-- Tampilkan Hasil Terakhir jika ada -->
+        <div class="last-result" *ngIf="lastAssessment">
+          Hasil terakhir: <strong>{{ lastAssessment.category }}</strong> (Skor: {{ lastAssessment.score }})
+        </div>
+      </div>
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </div>
+
   </div>
 </ion-content>
